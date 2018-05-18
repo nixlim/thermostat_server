@@ -9,7 +9,6 @@ class ThermoNuclearServer < Sinatra::Base
 
   before do
     @datastorage = NuclearData.instance
-    p @datastorage
   end
 
   get '/' do

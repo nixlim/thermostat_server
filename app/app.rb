@@ -20,7 +20,6 @@ class ThermoNuclearServer < Sinatra::Base
     headers 'Access-Control-Allow-Origin' => '*'
     @datastorage.temp  = params[:temperature]
     @datastorage.mode  = params[:mode]
-    puts 'bye'
     redirect '/'
   end
 end

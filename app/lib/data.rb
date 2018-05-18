@@ -4,7 +4,7 @@ class NuclearData
 
   def initialize
     @temp = 20
-    @mode = 'on'
+    @mode = true
   end
 
   def self.instance

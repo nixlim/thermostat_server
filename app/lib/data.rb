@@ -1,17 +1,15 @@
-class Data
+class NuclearData
   attr_accessor :temp, :mode
+  @@instance = NuclearData.new
 
-
-
-  def self.instance
-    @instance
+  def initialize
+    @temp = 20
+    @mode = 'on'
   end
 
-  def self.create
-  @instance = Data.new  if @instance == nil
+  def self.instance
+    @@instance
   end
 
   private_class_method :new
-
-
 end

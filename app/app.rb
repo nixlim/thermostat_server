@@ -8,19 +8,16 @@ class ThermoNuclearServer < Sinatra::Base
   set :session_secret, 'fsddsgjk22'
 
   before do
-    headers 'Access-Control-Allow-Origin' => '*'
-    Data.create
-    @datastorage = Data.instance
+    @datastorage = NuclearData.instance
   end
 
   get '/' do
-    {temp: 30, mode: 'on'}.to_json
-    p @datastorage
-    puts "hi"
+    headers 'Access-Control-Allow-Origin' => '*'
+    {temp: @datastorage.temp, mode: @datastorage.mode}.to_json
   end
 
   post '/' do
-
+    headers 'Access-Control-Allow-Origin' => '*'
     @datastorage.temp  = params[:temperature]
     @datastorage.mode  = params[:mode]
     puts 'bye'

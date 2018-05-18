@@ -1,19 +1,29 @@
 require 'sinatra/base'
 require 'json'
+require_relative './lib/data.rb'
 
 
 class ThermoNuclearServer < Sinatra::Base
   enable :sessions
+  set :session_secret, 'fsddsgjk22'
 
-  get '/' do
+  before do
     headers 'Access-Control-Allow-Origin' => '*'
-    @temp = {temp: 30, mode: 'on'}.to_json
-    haml :index
+    Data.create
+    @datastorage = Data.instance
   end
 
-  post '/thermonuclear' do
-    session[:powersaver] = 'on'
-    session[:temp] = 30
+  get '/' do
+    {temp: 30, mode: 'on'}.to_json
+    p @datastorage
+    puts "hi"
+  end
+
+  post '/' do
+
+    @datastorage.temp  = params[:temperature]
+    @datastorage.mode  = params[:mode]
+    puts 'bye'
     redirect '/'
   end
 end
